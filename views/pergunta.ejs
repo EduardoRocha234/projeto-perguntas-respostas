@@ -1,0 +1,67 @@
+<%- include('partials/header') %>
+<body>
+  <%- include('partials/navbar') %>
+  <div class="container">
+    <br />
+     <div class="card">  <!-- card -->
+      <div class="card-body">
+        <h1><%= pergunta.titulo %></h1>
+      </div>
+      <div class="card-footer">
+        <p><%=pergunta.descricao %></p>
+      </div>
+    </div>
+    <br />
+
+    <div class="card">  <!-- card -->
+      <div class="card-body">
+        <h1>Responda</h1>
+        <hr>
+        <form method="post" action="/responder">
+          <label>Resposta:</label>
+          <textarea
+            placeholder="Digite sua resposta..."
+            class="form-control"
+            name="corpo"
+          >
+          </textarea>
+          <br />
+          <input type="hidden" name="pergunta" value="<%= pergunta.id %>">
+          <button type="submit" class="btn btn-dark">Responder</button>
+        </form>
+      </div>
+    </div>
+    <br>
+    <% if(respostas.length > 0) { %>
+    <div class="card">
+        <div class="card-body">
+            <h3>Respostas</h3>
+            <hr>
+            <% respostas.forEach(resposta => { %>
+                <br>
+                <div class="card">
+                    <div class="card-header">
+                    Anônimo123
+                    </div>
+                    <div class="card-body">
+                      <blockquote class="blockquote mb-0">
+                        <p><%= resposta.corpo %></p>
+                        <footer class="blockquote-footer"> <%= resposta.createdAt %></footer>
+                      </blockquote>
+                    </div>
+                  </div>
+            <% }) %>
+        </div>
+    </div>
+    <% } else {%>
+        <div class="card">
+            <div class="card-body">
+                <p class="text-center">
+                    Esta pergunta ainda não tem respostas :(
+                </p>
+            </div>
+          </div>
+    <% } %>
+  </div>
+</body>
+<%- include('partials/footer') %>
