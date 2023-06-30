@@ -1,4 +1,2 @@
-npm install
-
-npm install nodemon -g
-nodemon index.js
+projeto de perguntas e respostas que fiz durante um curso de node js 
+usando ejs, sequelize e express
